@@ -240,6 +240,9 @@ class game:
         map_bg.set_alpha(100)
         map_bg.convert_alpha()
 
+        ar = [1, 1.01, 1.02, 1.03, 1.04, 1.05]
+        lst = [random.choice(ar), random.choice(ar), random.choice(ar)]
+
         create_blocks = True
         while create_blocks:
             ht = random.randrange(250, 400)
@@ -682,8 +685,8 @@ class game:
             for enemy in enemies:
                 en_distance = enemy.rect.x
                 en_progress[en_index] = (en_distance - start)/game_distance
-                if en_progress[en_index] < 1:
-                    if ball_x >= enemy.rect.x:
+                if en_progress[en_index] < lst[en_index]:
+                    if ball_x >= enemy.rect.x or en_progress[en_index] >= 1:
                         if enemy.image == emale_img2:
                             enemy.image = emale_img1
                         elif enemy.image == emale_img2ball:
