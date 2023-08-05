@@ -1,6 +1,6 @@
-# GameVerse README
+# Sphere To Spare
 
-![Sphere To Spare]
+![Sphere To Spare]()
 
 Welcome to the repository for **Sphere2Spare** - a thrilling game created using the Pygame framework!
 
