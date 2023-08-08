@@ -1,4 +1,4 @@
-#GameVerse README
+# GameVerse README
 
 ![Sphere To Spare]
 
