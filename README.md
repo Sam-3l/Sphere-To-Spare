@@ -1,6 +1,6 @@
 # Sphere To Spare
 
-![Sphere To Spare](icon.png)
+![Sphere To Spare](loader1.png)
 
 Welcome to the repository for **Sphere2Spare** - a thrilling game created using the Pygame framework!
 
