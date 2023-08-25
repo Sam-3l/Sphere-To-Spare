@@ -18,3 +18,4 @@ Welcome to the repository for **Sphere2Spare** - a thrilling game created using 
 Before you dive into action, make sure you have Python and Pygameinstalled on your system. If not, follow the installation steps below.
 
 ## Installation
+https://www.figma.com/file/VMslRyxZZl0oOUj5rNSLhC/De-coolaborator-(Dev-Copy)?type=design&node-id=3%3A35&mode=design&t=EcstzpQMX21fqjLE-1
