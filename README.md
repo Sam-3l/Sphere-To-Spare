@@ -26,3 +26,33 @@ Before you dive into action, make sure you have Python and Pygameinstalled on yo
 Launch the game by running the following command in your terminal:
 ```bash
 python main.py
+```
+
+## Controls (Default)
+Up Arrow: Move Up
+Left Arrow: Move Left
+Down Arrow: Move Down
+Right Arrow: Move Right
+Space: Jump
+C: Pick ball
+X: Attack
+S: Perform [special action]
+Esc: Pause the game
+
+## Contributing
+We welcome contributions from the community! To contribute to Sphere To Spare, follow these steps:
+
+Fork this repository
+Create a new branch:
+```bash
+git checkout -b feature/your-feature
+```
+Make your changes and commit them:
+```bash
+git commit -m 'Add some feature'
+```
+Push to the branch:
+```bash
+git push origin feature/your-feature
+```
+Create a pull request
