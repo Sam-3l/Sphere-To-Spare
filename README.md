@@ -18,3 +18,11 @@ Welcome to the repository for **Sphere2Spare** - a thrilling game created using 
 Before you dive into action, make sure you have Python and Pygameinstalled on your system. If not, follow the installation steps below.
 
 ## Installation
+1. Clone this repository to your local machine using `git clone https://github.com/your-username/your-game.git`
+2. Navigate to the project directory: `cd your-game`
+3. Install the required dependencies: `pip install pygame`
+
+## Usage
+Launch the game by running the following command in your terminal:
+```bash
+python main.py
