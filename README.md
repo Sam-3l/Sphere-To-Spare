@@ -29,15 +29,15 @@ python main.py
 ```
 
 ## Controls (Default)
-Up Arrow: Move Up
-Left Arrow: Move Left
-Down Arrow: Move Down
-Right Arrow: Move Right
-Space: Jump
-C: Pick ball
-X: Attack
-S: Perform [special action]
-Esc: Pause the game
+- Up Arrow: Move Up
+- Left Arrow: Move Left
+- Down Arrow: Move Down
+- Right Arrow: Move Right
+- Space: Jump
+- C: Pick ball
+- X: Attack
+- S: Perform [special action]
+- Esc: Pause the game
 
 ## Contributing
 We welcome contributions from the community! To contribute to Sphere To Spare, follow these steps:
