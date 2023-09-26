@@ -18,8 +18,8 @@ Welcome to the repository for **Sphere2Spare** - a thrilling game created using 
 Before you dive into action, make sure you have Python and Pygameinstalled on your system. If not, follow the installation steps below.
 
 ## Installation
-1. Clone this repository to your local machine using `git clone https://github.com/your-username/your-game.git`
-2. Navigate to the project directory: `cd your-game`
+1. Clone this repository to your local machine using `git clone https://github.com/Sam-3l/GameVerse.git`
+2. Navigate to the project directory: `cd GameVerse`
 3. Install the required dependencies: `pip install pygame`
 
 ## Usage
@@ -43,16 +43,16 @@ python main.py
 We welcome contributions from the community! To contribute to Sphere To Spare, follow these steps:
 
 Fork this repository
-Create a new branch:
+1. Create a new branch:
 ```bash
 git checkout -b feature/your-feature
 ```
-Make your changes and commit them:
+2. Make your changes and commit them:
 ```bash
 git commit -m 'Add some feature'
 ```
-Push to the branch:
+3. Push to the branch:
 ```bash
 git push origin feature/your-feature
 ```
-Create a pull request
+4. Create a pull request
