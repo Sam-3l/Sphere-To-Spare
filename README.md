@@ -18,8 +18,8 @@ Welcome to the repository for **Sphere2Spare** - a thrilling game created using 
 Before you dive into action, make sure you have Python and Pygameinstalled on your system. If not, follow the installation steps below.
 
 ## Installation
-1. Clone this repository to your local machine using `git clone https://github.com/Sam-3l/GameVerse.git`
-2. Navigate to the project directory: `cd GameVerse`
+1. Clone this repository to your local machine using `git clone https://github.com/Sam-3l/Sphere-To-Spare.git`
+2. Navigate to the project directory: `cd Sphere-To-Spare`
 3. Install the required dependencies: `pip install pygame`
 
 ## Usage
@@ -36,7 +36,7 @@ python main.py
 - Space: Jump
 - C: Pick ball
 - X: Attack
-- S: Perform [special action]
+- S: Perform special action
 - Esc: Pause the game
 
 ## Contributing
