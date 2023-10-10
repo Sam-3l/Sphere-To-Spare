@@ -8,14 +8,14 @@ loaded_images = []
 loaded_sounds = []
 
 def load():
-    with open('settings.json', "r") as file:
+    with open('storage/settings.json', "r") as file:
         return json.load(file)
     
 class loading:
     def __init__(self):
         self.clock = pygame.time.Clock()
         loading_img = ["loader1.png", "loader2.png", "loader3.png",]
-        self.image = pygame.image.load(loading_img[random.choice((0, 1, 2))])
+        self.image = pygame.image.load(f"images/{loading_img[random.choice((0, 1, 2))]}")
 
     def run(self, window):
         xdim, ydim = window.get_width()/1600, window.get_height()/900 
@@ -52,16 +52,16 @@ class loading:
             if time - initial >= 2000:
                 pygame.time.delay(100)
                 if asset.endswith(".png") or asset.endswith(".jpeg") or asset.endswith(".jpg"):
-                    image = pygame.image.load(asset)
+                    image = pygame.image.load(f"images/{asset}")
                     loaded_images.append(image)
                 if asset.endswith(".wav"):
                     if asset == "background.wav":
-                        pygame.mixer.music.load(asset)
+                        pygame.mixer.music.load(f"audios/{asset}")
                         pygame.time.delay(100)
                         pygame.mixer.music.play()
                     else:
                         pygame.time.delay(800)
-                        sound = pygame.mixer.Sound(asset)
+                        sound = pygame.mixer.Sound(f"audios/{asset}")
                         loaded_sounds.append(sound)
                     
                 work_prog += 1
@@ -490,7 +490,7 @@ class mainmenu:
 # loaded_images.append(pygame.image.load("sback.png"))
 
 def save(data):
-    with open('settings.json', "w") as file:
+    with open('storage/settings.json', "w") as file:
         json.dump(data, file)
     
 class Settings:

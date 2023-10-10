@@ -36,7 +36,7 @@ controls = {"left": pygame.K_LEFT,
 class g_loading:
     def __init__(self):
         self.clock = pygame.time.Clock()
-        self.image = pygame.image.load('mountains.jpg')
+        self.image = pygame.image.load('images/mountains.jpg')
         self.text = pygame.font.SysFont("Agency FB", 40, True)
         self.btext = pygame.font.SysFont("Agency FB", 80, True)
         self.mtext = pygame.font.SysFont("Agency FB", 50, True)
@@ -47,7 +47,7 @@ class g_loading:
         work_prog = 0
         bar = 0
         percent_prog = 0
-        game_assets = ["", "mountains.jpg", "standing.png",  "rock.png", "lobby.png", "lnd_rock.png", "ball.png", "with_ball.png", "enemy_male.png", "enemy_female.png", "enemy_male_ball.png", "enemy_female_ball.png", "lobby_landingpd.png", "mapchr.png", "enemymap.png", "redenemymap.png", "ballmp.png", "life.png", "life_cont.png", "life_bar.png", "grip.png", "grip_bar.png", "punch1.png", "punch2.png", "enemy_female_attack.png","enemy_female_ball_attack.png","enemy_male_attack.png","enemy_male_ball_attack.png", "map.png", "mapbg.png", "credenemymap.png", "cenemymap.png", "chrmap.png", "rock2.png", "lnd_rock2.png", "run1.png", "run2.png", "run3.png", "run4.png", "run5.png", "run6.png", "ball_run1.png", "ball_run2.png", "ball_run3.png", "ball_run4.png", "ball_run5.png", "ball_run6.png", "ball_punch1.png", "ball_punch2.png", "punch.wav", "wind.wav", "jump.wav", "landing.wav", "running.wav", "background1.wav", "finish_rock.png", "finish_flag.png", "finish_rock_lpd.png"]
+        game_assets = ["", "mountains.jpg", "standing.png",  "rock.png", "lobby.png", "lnd_rock.png", "ball.png", "with_ball.png", "enemy_male.png", "enemy_female.png", "enemy_male_ball.png", "enemy_female_ball.png", "lobby_landingpd.png", "mapchr.png", "enemymap.png", "redenemymap.png", "ballmp.png", "life.png", "life_cont.png", "life_bar.png", "grip.png", "grip_bar.png", "punch1.png", "punch2.png", "enemy_female_attack.png","enemy_female_ball_attack.png","enemy_male_attack.png","enemy_male_ball_attack.png", "map.png", "mapbg.png", "credenemymap.png", "cenemymap.png", "chrmap.png", "rock2.png", "lnd_rock2.png", "run1.png", "run2.png", "run3.png", "run4.png", "run5.png", "run6.png", "ball_run1.png", "ball_run2.png", "ball_run3.png", "ball_run4.png", "ball_run5.png", "ball_run6.png", "ball_punch1.png", "ball_punch2.png", "punch.wav", "wind.wav", "jump.wav", "landing.wav", "running.wav", "background1.wav", "finish_rock.png", "finish_flag.png", "finish_rock_lpd.png", "finish_flg.png", "stage.jpg", "menu2.png", "star.png", "star_mt.png", "coin1.png", "flag_bg.png", "computer.png", "sback.png"]
         work = len(game_assets) - 1
         self.width, self.height = window.get_size()
         self.image = pygame.transform.scale(self.image, (self.width, self.height))
@@ -81,17 +81,17 @@ class g_loading:
             if time - initial >= 2000:
                 pygame.time.delay(100)
                 if asset.endswith(".png") or asset.endswith(".jpeg") or asset.endswith(".jpg"):
-                    image = pygame.image.load(asset)
+                    image = pygame.image.load(f"images/{asset}")
                     image.convert()
                     loaded_images.append(image)
                 if asset.endswith(".wav"):
                     if asset == "background1.wav":
                         pygame.time.delay(100)
-                        pygame.mixer.music.load(asset)
+                        pygame.mixer.music.load(f"audios/{asset}")
                         pygame.mixer.music.play()
                     else:
                         pygame.time.delay(100)
-                        sound = pygame.mixer.Sound(asset)
+                        sound = pygame.mixer.Sound(f"audios/{asset}")
                         loaded_sounds.append(sound)
                     
                 work_prog += 1
@@ -137,6 +137,7 @@ class game:
         self.fblock = sprite(self.finish_img)
 
         self.flag = pygame.transform.scale(loaded_images[49], (300, 600))
+        self.flag2 = pygame.transform.scale(loaded_images[51], (410, 300))
 
         self.index = []
         ht = random.randrange(250, 400)
@@ -169,6 +170,8 @@ class game:
         running = True
         jump = False
         rnd = 1
+
+        end_msg = pygame.font.SysFont("Agency FB", 120, True)
 
         # run starts from 34
         chr_img1 = pygame.transform.scale(loaded_images[1], (240, 380))
@@ -356,6 +359,9 @@ class game:
 
         chr_img1_att = pygame.transform.scale(loaded_images[21], (240, 300))
         chr_img2_att = pygame.transform.flip(chr_img1_att, True, False)
+
+        start_time = pygame.time.get_ticks()
+
         while running:
             # background
             window.fill((0, 0, 0))
@@ -1129,7 +1135,25 @@ class game:
 
             if progress >= 1:
                 if game_won == None:
+                    stop_time = pygame.time.get_ticks()
                     game_won = True
+                    black = pygame.Surface((window.get_size()))
+                    black.fill((0, 0, 0))
+                    alpha = 0
+
+            if game_won:
+                victory = end_msg.render("VICTORY!", True, (0, 160, 40))
+                window.blit(victory, (800 - victory.get_width()/2, 70))
+                window.blit(self.flag2, (170, -15))
+                window.blit(self.flag2, (1430 - self.flag2.get_width(), -15))
+                if pygame.time.get_ticks() - stop_time >= 1000:
+                    black.set_alpha(alpha)
+                    window.blit(black, (0, 0))
+                    if alpha <= 254:
+                        alpha += 5
+                    else:
+                        stats = {"kills": kills, "time": stop_time - start_time}
+                        Won().run(window, stats)
 
             if 1 in en_progress:
                 if game_won == None:
@@ -1138,10 +1162,111 @@ class game:
             pygame.display.flip()
             self.clock.tick(50)
 
+# game_assets = ["", "mountains.jpg", "standing.png",  "rock.png", "lobby.png", "lnd_rock.png", "ball.png", "with_ball.png", "enemy_male.png", "enemy_female.png", "enemy_male_ball.png", "enemy_female_ball.png", "lobby_landingpd.png", "mapchr.png", "enemymap.png", "redenemymap.png", "ballmp.png", "life.png", "life_cont.png", "life_bar.png", "grip.png", "grip_bar.png", "punch1.png", "punch2.png", "enemy_female_attack.png","enemy_female_ball_attack.png","enemy_male_attack.png","enemy_male_ball_attack.png", "map.png", "mapbg.png", "credenemymap.png", "cenemymap.png", "chrmap.png", "rock2.png", "lnd_rock2.png", "run1.png", "run2.png", "run3.png", "run4.png", "run5.png", "run6.png", "ball_run1.png", "ball_run2.png", "ball_run3.png", "ball_run4.png", "ball_run5.png", "ball_run6.png", "ball_punch1.png", "ball_punch2.png", "punch.wav", "wind.wav", "jump.wav", "landing.wav", "running.wav", "background1.wav", "finish_rock.png", "finish_flag.png", "finish_rock_lpd.png", "finish_flg.png", "stage.jpg", "menu2.png", "star.png", "star_mt.png", "coin1.png", "flag_bg.png", "computer.png", "sback.png"]
+# for asset in game_assets:
+#     if asset.endswith(".png") or asset.endswith(".jpeg") or asset.endswith(".jpg"):
+#         image = pygame.image.load(asset)
+#         image.convert()
+#         loaded_images.append(image)
+class Won:
+    def __init__(self):
+        self.background = loaded_images[52]
+        self.star = pygame.transform.scale(loaded_images[54], (180, 180))
+        self.mt_star = pygame.transform.scale(loaded_images[55], (160, 160))
+        self.coin1 = pygame.transform.scale(loaded_images[56], (50, 50))
+        self.coin1.set_colorkey((255, 255, 255))
+        self.flag = pygame.transform.scale(loaded_images[57], (800, 800))
+        self.flag = pygame.transform.rotate(self.flag, -10)
+        self.computer = pygame.transform.scale(loaded_images[58], (80, 50))
+        self.back = pygame.transform.scale(loaded_images[59], (76, 48))
+        self.back.set_colorkey((0, 0, 0))
+        self.computer.set_colorkey((0, 255, 0))
+        self.flag.set_alpha(40)
+        self.text = pygame.font.SysFont("Agency FB", 50, True)
+        self.ntext = pygame.font.SysFont("serif", 52, False, True)
+        self.stext = pygame.font.SysFont("Agency FB", 30, True)
+        self.clock = pygame.time.Clock()
+    
+    def run(self, window, stats):
+        self.background = pygame.transform.scale(self.background, (window.get_size()))
+        player = pygame.transform.scale(loaded_images[53], (400, 690)) 
+        running = True
+        time_s = stats["time"]/1000
+        if time_s < 60:
+            time_m = 0
+        else:
+            time_m = math.floor(time_s/60)
+            time_s %= 60
+
+        if time_m < 60:
+            time_h = 0
+            time = f"{time_m}:{time_s:.1f}"
+        else:
+            time_h = math.floor(time_m/60)
+            time_m %= 60
+            time = f"{time_h}:{time_m}:{time_s:.1f}"
+
+        while running:
+            cont = pygame.draw.rect(window, (0, 0, 0), pygame.Rect(1354, 835, 250, 60))
+            window.fill((0, 255, 0))
+            window.blit(self.background, (0, 0))
+            window.blit(player, (940, 200))
+            window.blit(self.star, (160, 80))
+            window.blit(self.star, (310, 80))
+            window.blit(self.mt_star, (470, 78))
+            window.blit(self.flag, (30, 100))
+            window.blit(self.text.render("Rewards:", True, (255, 255, 0)), (80, 250))
+            window.blit(self.text.render("50", True, (180, 180, 180)), (280, 252))
+            window.blit(self.coin1, (330, 258))
+            window.blit(self.text.render("Time:", True, (255, 255, 0)), (80, 320))
+            window.blit(self.text.render(time, True, (180, 180, 180)), (200, 322))
+            window.blit(self.text.render("Kills:", True, (255, 255, 0)), (80, 390))
+            window.blit(self.text.render(f"{stats['kills']}", True, (180, 180, 180)), (190, 392))
+            window.blit(self.text.render("Total Distance:", True, (255, 255, 0)), (80, 460))
+            window.blit(self.text.render("200 metres", True, (180, 180, 180)), (360, 462))
+            window.blit(self.text.render("Map:", True, (255, 255, 0)), (80, 530))
+            window.blit(self.text.render("Sub-polar Alpine", True, (180, 180, 180)), (190, 532))
+            window.blit(self.text.render("Opponents:", True, (255, 255, 0)), (80, 600))
+            window.blit(self.text.render("3", True, (180, 180, 180)), (290, 602))
+            window.blit(self.text.render("Game-mode:", True, (255, 255, 0)), (80, 670))
+            window.blit(self.text.render("F2F", True, (180, 180, 180)), (300, 672))
+
+            pygame.draw.line(window, (255, 255, 255), (1280, 245), (1600, 245))
+            window.blit(self.text.render("Player", True, (255, 255, 0)), (1300, 250))
+            window.blit(self.stext.render(time, True, (180, 180, 180)), (1450, 300))
+            pygame.draw.line(window, (255, 255, 255), (1280, 350), (1600, 350))
+            window.blit(self.text.render("Opponent 1", True, (255, 255, 0)), (1300, 355))
+            window.blit(self.stext.render("4:04.3", True, (180, 180, 180)), (1450, 405))
+            window.blit(self.computer, (1530, 380))
+            pygame.draw.line(window, (255, 255, 255), (1280, 455), (1600, 455))
+            window.blit(self.text.render("Opponent 2", True, (255, 255, 0)), (1300, 460))
+            window.blit(self.stext.render("3:56.6", True, (180, 180, 180)), (1450, 510))
+            window.blit(self.computer, (1530, 485))
+            pygame.draw.line(window, (255, 255, 255), (1280, 560), (1600, 560))
+            window.blit(self.text.render("Opponent 3", True, (255, 255, 0)), (1300, 565))
+            window.blit(self.stext.render("2:24.1", True, (180, 180, 180)), (1450, 615))
+            window.blit(self.computer, (1530, 590))
+            pygame.draw.line(window, (255, 255, 255), (1280, 665), (1600, 665))
+            
+            window.blit(self.ntext.render("Continue", True, (255, 255, 255)), (1356, 834))
+            window.blit(self.back, (1530, 842))
+            pygame.draw.line(window, (200, 200, 0), (1350, 890), (1600, 890), 3)
+            for event in pygame.event.get():
+                if event.type == pygame.QUIT:
+                    running = False
+                    sys.exit()
+
+                if event.type == pygame.MOUSEBUTTONDOWN and event.button == 1 and cont.collidepoint(pygame.mouse.get_pos()):
+                    window.blit(pygame.Surface((100, 100)), (0, 0))
+            
+            pygame.display.flip()
+            self.clock.tick(40)
+
 g_loading().run(window)
 
 # ball landed
 # shortcut to map --unnnecessary
+# Pause button
 # complete everything in l1 first before going into others like store, training, linking it to menu, levels, funds and other cool stuffs
 # get required and useful images for small icons e.g grip etc //settled and so on ----more advanced: ----also for enemies
 # end of game prolly lobby with a flag and also the end remarks like game over and stuffs, coins earned, time taken --ticks, stars etc.
