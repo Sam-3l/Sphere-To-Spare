@@ -1,6 +1,6 @@
 # Sphere To Spare
 
-![Sphere To Spare](icon.png)
+![Sphere To Spare](loader1.png)
 
 Welcome to the repository for **Sphere2Spare** - a thrilling game created using the Pygame framework!
 
@@ -18,3 +18,41 @@ Welcome to the repository for **Sphere2Spare** - a thrilling game created using 
 Before you dive into action, make sure you have Python and Pygameinstalled on your system. If not, follow the installation steps below.
 
 ## Installation
+1. Clone this repository to your local machine using `git clone https://github.com/Sam-3l/Sphere-To-Spare.git`
+2. Navigate to the project directory: `cd Sphere-To-Spare`
+3. Install the required dependencies: `pip install pygame`
+
+## Usage
+Launch the game by running the following command in your terminal:
+```bash
+python main.py
+```
+
+## Controls (Default)
+- Up Arrow: Move Up
+- Left Arrow: Move Left
+- Down Arrow: Move Down
+- Right Arrow: Move Right
+- Space: Jump
+- C: Pick ball
+- X: Attack
+- S: Perform special action
+- Esc: Pause the game
+
+## Contributing
+We welcome contributions from the community! To contribute to Sphere To Spare, follow these steps:
+
+Fork this repository
+1. Create a new branch:
+```bash
+git checkout -b feature/your-feature
+```
+2. Make your changes and commit them:
+```bash
+git commit -m 'Add some feature'
+```
+3. Push to the branch:
+```bash
+git push origin feature/your-feature
+```
+4. Create a pull request
