@@ -1,11 +1,11 @@
 import pygame, sys
-from mainmenu import loading, mainmenu
+from .mainmenu import loading, mainmenu
 
 pygame.init()
 
 class index:
     def __init__(self):
-        self.image = pygame.image.load("logo.png")
+        self.image = pygame.image.load("images/logo.png")
         self.clock = pygame.time.Clock()
 
     def run(self, window):
